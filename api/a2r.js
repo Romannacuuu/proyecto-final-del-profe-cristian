@@ -1,27 +1,17 @@
-const { arabicToRoman } = require("../romanos.js");
-
-module.exports = (req, res) => {
-    // Habilitar CORS
+export default function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    const { number } = req.query;
+    const { arabic } = req.query;
 
-    // Validación estricta: solo dígitos
-    if (!number || !/^\d+$/.test(number)) {
-        return res.status(400).json({ error: "Número inválido" });
+    if (!arabic || isNaN(arabic)) {
+        return res.status(400).json({ error: "Parámetro 'arabic' inválido o ausente" });
     }
 
-    const num = Number(number);
-    if (num < 1 || num > 3999) {
-        return res.status(400).json({ error: "Número inválido" });
+    const num = parseInt(arabic, 10);
+    if (num <= 0 || num > 3999) {
+        return res.status(400).json({ error: "Número fuera de rango (1-3999)" });
     }
 
-    try {
-        const roman = arabicToRoman(num);
-        res.status(200).json({ input: num, output: roman });
-    } catch (e) {
-        res.status(400).json({ error: e.message });
-    }
-};
+    const roman = toRoman(num); // tu función de conversión
+    return res.status(200).json({ roman });
+}
