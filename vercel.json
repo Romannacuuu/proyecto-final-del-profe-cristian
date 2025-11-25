@@ -1,12 +1,12 @@
 {
     "rewrites": [
         {
-            "source": "/conversor-arabe",
-            "destination": "/api/conversor-arabe"
+            "source": "/a2r",
+            "destination": "/api/a2r"
         },
         {
-            "source": "/conversor-romano",
-            "destination": "/api/conversor-romano"
+            "source": "/r2a",
+            "destination": "/api/r2a"
         }
     ]
 }
