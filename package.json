@@ -1,0 +1,15 @@
+{
+    "name": "numeros-romanos-aariadnavs",
+    "version": "1.0.0",
+    "description": "Conversor de números romanos <-> arábigos con frontend, pruebas y endpoints en Vercel",
+    "main": "romanos.js",
+    "scripts": {
+        "dev": "node romanos.js",
+        "test": "jest --runInBand",
+        "format": "prettier --write ."
+    },
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "prettier": "^3.3.3"
+    }
+}
