@@ -1,12 +1,18 @@
+import { convertirRomanoAArabigo, esRomanoValido } from '../romanos.js';
+
 export default function handler(req, res) {
+    // Habilitar CORS
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
     const { roman } = req.query;
 
-    if (!roman || !isValidRoman(roman)) {
-        return res.status(400).json({ error: "Parámetro 'roman' inválido o ausente" });
+    // Validación
+    if (!roman || !esRomanoValido(roman)) {
+        return res.status(400).json({ error: "Número romano inválido" });
     }
 
-    const arabic = toArabic(roman); // tu función de conversión
+    const arabic = convertirRomanoAArabigo(roman);
     return res.status(200).json({ arabic });
 }
